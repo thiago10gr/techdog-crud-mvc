@@ -1,0 +1,62 @@
+﻿@model List<Projeto.Web.Areas.AreaRestrita.Models.UsuarioViewModelConsulta>
+
+@{
+    ViewBag.Titulo = "Consulta de Usuários";
+    ViewBag.Title = "Consulta";
+    Layout = "~/Areas/AreaRestrita/Views/Shared/Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-12">
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Ativo</th>
+                        <th>Data de Cadastro</th>
+                        <th>Operações</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @using Projeto.Entidades.Tipos
+
+                    @foreach (var u in Model)
+                    {
+
+                        var situacao = u.Ativo.Equals(SimNao.Sim) ? "ATIVO" : "INATIVO";
+
+                        <tr>
+                            <td>@u.IdUsuario</td>
+                            <td>@u.Nome</td>
+                            <td>@u.Email</td>
+                            <td>@situacao</td>
+                            <td>@u.DataCadastro.ToString("dd/MM/yyyy")</td>
+                            <td>
+                                <a href="/AreaRestrita/Usuario/Edicao/@u.IdUsuario" class="btn btn-primary btn-sm"> Atualizar </a>
+                                <a href="/AreaRestrita/Usuario/Exclusao/@u.IdUsuario" class="btn btn-danger btn-sm"> Excluir </a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="6">
+                            Total de Usuários: @Model.Count()
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+
+
+
+        </div>
+    </div>
+
+}

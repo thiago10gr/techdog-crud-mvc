@@ -1,0 +1,89 @@
+﻿@model Projeto.Web.Areas.AreaRestrita.Models.UsuarioViewModelEdicao
+
+@{
+    ViewBag.Titulo = "Edição de Usuário";
+    ViewBag.Title = "Edicao";
+    Layout = "~/Areas/AreaRestrita/Views/Shared/Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Nome)
+            @Html.TextBoxFor(model => model.Nome,
+                     new
+                     {
+                         @class = "form-control",
+                         @placeholder = "Digite aqui"
+                     })
+
+            <br />
+
+            @Html.LabelFor(model => model.Email)
+            @Html.TextBoxFor(model => model.Email,
+                     new
+                     {
+                         @class = "form-control",
+                         @placeholder = "Digite aqui"
+                     })
+
+            <br />
+
+            @Html.LabelFor(model => model.Senha)
+            @Html.TextBoxFor(model => model.Senha,
+                     new
+                     {
+                         @class = "form-control",
+                         @placeholder = "Digite aqui",
+                         @type = "password"
+
+                     })
+            <br />
+
+            @Html.LabelFor(model => model.RepitaSenha)
+            @Html.TextBoxFor(model => model.RepitaSenha,
+                     new
+                     {
+                         @class = "form-control",
+                         @placeholder = "Digite aqui",
+                         @type = "password"
+                     })
+            <br />
+
+            @Html.LabelFor(model => model.DataCadastro)
+            @Html.TextBoxFor(model => model.DataCadastro,
+                     new
+                     {
+                         @class = "form-control",
+                         @placeholder = "Digite aqui",
+                         @readonly = "readonly"
+
+                     })
+            <br />
+
+
+            @Html.LabelFor(model => model.Ativo)
+            @Html.EnumDropDownListFor(model => model.Ativo, "- Escolha uma Opção -",
+                     new
+                     {
+                         @class = "form-control"
+                     })
+
+            <br />
+
+            @Html.HiddenFor(model => model.IdUsuario)
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <input id="btnCadastrar" type="submit" value="Salvar" class="btn btn-primary" />
+        </div>
+    </div>
+
+}
+

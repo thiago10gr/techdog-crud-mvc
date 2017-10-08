@@ -1,0 +1,52 @@
+﻿@model Projeto.Web.Areas.AreaRestrita.Models.UsuarioViewModelExclusao
+
+@{
+    ViewBag.Titulo = "Exclusão de Usuário";
+    ViewBag.Title = "Exclusao";
+    Layout = "~/Areas/AreaRestrita/Views/Shared/Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm())
+{
+
+    @Html.HiddenFor(model => model.IdUsuario)
+
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <div class="panel panel-danger">
+
+                <div class="panel-heading bg-danger">
+                    <h4>
+                        Deseja realmente excluir este usuário?
+                    </h4>
+                </div>
+                <div class="panel-body">
+
+                    @using Projeto.Entidades.Tipos
+                    @{
+                        var situacao = Model.Ativo.Equals(SimNao.Sim) ? "ATIVO" : "INATIVO";
+                    }
+
+                    Código: <strong>@Model.IdUsuario</strong> <br />
+                    Nome: <strong>@Model.Nome</strong> <br />
+                    E-mail: <strong>@Model.Email</strong> <br />
+                    Situação: <strong>@situacao</strong> <br />
+                    Data de Cadastro: <strong>@string.Format("{0:dd/MM/yyyy HH:mm:ss}", Model.DataCadastro)</strong> <br /><br />
+
+                </div>
+
+                <div class="panel-footer">
+                    <input type="submit" value="Confirmar Exclusão" class="btn btn-danger" />
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+}
